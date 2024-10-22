@@ -1,7 +1,5 @@
 ﻿using Autofac;
-using FriendOrganiserUI.Data;
 using FriendOrganiserUI.Startup;
-using FriendOrganiserUI.ViewModel;
 using System.Windows;
 
 namespace FriendOrganiserUI
