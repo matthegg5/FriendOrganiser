@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using FriendOrganiserUI.Startup;
+using System.Net.Http;
 using System.Windows;
 
 namespace FriendOrganiserUI
