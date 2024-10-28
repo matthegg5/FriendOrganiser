@@ -1,6 +1,7 @@
 #nullable disable
 
-using FriendOrganiser.API.Utility;
+using FriendOrganiser.Application.Features.Friend;
+using FriendOrganiser.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,14 +20,13 @@ namespace FriendOrganiser.API.Controllers
             _logger = logger;
         }
 
-        //[HttpGet("all", Name = "GetAllFriends")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public async Task<ActionResult<List<PartsViewModel>>> GetAllFriends()
-        //{
-        //    var queryResponse = await _mediator.Send(new GetPartsListQuery());
-        //    return Ok(queryResponse);
-        //}
+        [HttpGet("all", Name = "GetAllFriends")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<IList<FriendViewModel>>> GetAllFriends(CancellationToken cancellationToken)
+        {
+            var queryResponse = await _mediator.Send(new GetAllFriendsQuery(), cancellationToken: cancellationToken);
+            return Ok(queryResponse);
+        }
 
-    
     }
 }

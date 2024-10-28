@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Friend\" />
+    <Folder Include="Features\Friend\Commands\" />
   </ItemGroup>
 
   <PropertyGroup>
