@@ -14,7 +14,7 @@ namespace FriendOrganiser.Infrastructure.Persistence.Repositories
 
         public Task<bool> IsFriendIdUnique(int friendId)
         {
-            var matches = _dbContext.Friends.Any(p => p.Id.Equals(friendId));
+            var matches = _dbContext.Friend.Any(p => p.Id.Equals(friendId));
             return Task.FromResult(matches);
         }
     }

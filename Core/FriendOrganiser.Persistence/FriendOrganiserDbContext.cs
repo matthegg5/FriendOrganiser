@@ -7,26 +7,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FriendOrganiser.Infrastructure.Persistence
 {
-    public class FriendOrganiserDbContext : IdentityDbContext<IdentityUser>
+    public class FriendOrganiserDbContext : DbContext
     {
         public FriendOrganiserDbContext(DbContextOptions<FriendOrganiserDbContext> options) : base(options)
         {
 
         }
-        public DbSet<Friend> Friends { get; set;}
+        public DbSet<Friend> Friend { get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FriendOrganiserDbContext).Assembly);
 
-            //seed data here
-            //var partGuid = new Guid("31ae5210-236f-4e65-ac59-b6b16e204c9e");
-            //modelBuilder.Entity<Part>().HasData(new Part{
-            //    PartId = partGuid,
-            //    PartNum = "MATT-NEW-PART",
-            //    PartDescription = "MATT-NEW-PART"
-            //});
-            
+            modelBuilder.Entity<Friend>().HasData(new Friend
+            {
+                Id = 1,
+                FirstName = "Thomas",
+                LastName = "Hubert",
+                Email = "thomas@hubert.com"
+            },
+            new Friend
+            {
+                Id = 2,
+                FirstName = "Jimbo",
+                LastName = "Hardman",
+                Email = "jimbo@hardman.com"
+            });
+
             base.OnModelCreating(modelBuilder);
         }
 

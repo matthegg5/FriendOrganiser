@@ -14,10 +14,7 @@ namespace FriendOrganiser.Infrastructure.Persistence
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<FriendOrganiserDbContext>(options => options.UseMySQL(configuration.GetConnectionString("FriendOrganiserDbConnectionString")));
-
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                    .AddEntityFrameworkStores<FriendOrganiserDbContext>();
+            services.AddDbContext<FriendOrganiserDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("FriendOrganiserDbConnectionString")));
  
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IFriendRepository, FriendRepository>();

@@ -2,7 +2,7 @@
 
 namespace FriendOrganiser.Domain.Entities
 {
-    public class Friend : AuditableEntity
+    public class Friend
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = null!;
