@@ -49,9 +49,9 @@ namespace FriendOrganiser.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "thomas@hubert.com",
-                            FirstName = "Thomas",
-                            LastName = "Hubert"
+                            Email = "apple@banana.com",
+                            FirstName = "apple",
+                            LastName = "banana"
                         },
                         new
                         {

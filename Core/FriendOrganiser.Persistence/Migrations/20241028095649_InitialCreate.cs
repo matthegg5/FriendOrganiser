@@ -32,7 +32,7 @@ namespace FriendOrganiser.Persistence.Migrations
                 columns: new[] { "Id", "Email", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { 1, "thomas@hubert.com", "Thomas", "Hubert" },
+                    { 1, "apple@banana.com", "apple", "banana" },
                     { 2, "jimbo@hardman.com", "Jimbo", "Hardman" }
                 });
         }
