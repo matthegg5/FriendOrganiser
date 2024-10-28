@@ -9,6 +9,6 @@ namespace FriendOrganiserUI.Data
 {
     public interface IFriendDataService
     {
-        IEnumerable<Friend> GetAll();
+        Task<IEnumerable<Friend>> GetAll();
     }
 }

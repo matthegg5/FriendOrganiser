@@ -17,9 +17,9 @@ namespace FriendOrganiserUI.ViewModel
             _friendDataService = friendDataService;
         }
 
-        public void Load()
+        public async Task Load()
         {
-            var friends = _friendDataService.GetAll();
+            var friends = await _friendDataService.GetAll();
             Friends.Clear();
 
             foreach (var friend in friends) 
