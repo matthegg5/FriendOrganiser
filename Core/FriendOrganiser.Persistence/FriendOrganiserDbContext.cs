@@ -22,9 +22,9 @@ namespace FriendOrganiser.Infrastructure.Persistence
             modelBuilder.Entity<Friend>().HasData(new Friend
             {
                 Id = 1,
-                FirstName = "Thomas",
-                LastName = "Hubert",
-                Email = "thomas@hubert.com"
+                FirstName = "Apple",
+                LastName = "banana",
+                Email = "apple@banana.com"
             },
             new Friend
             {
