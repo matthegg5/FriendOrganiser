@@ -1,20 +1,40 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:FriendOrganiser.AvaloniaUI.ViewModels"
+        xmlns:vm="using:FriendOrganiserUI.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="FriendOrganiser.AvaloniaUI.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
+        x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="FriendOrganiser.AvaloniaUI">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <!--<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/> -->
+    <Grid ColumnDefinitions="200,Auto" RowDefinitions="*,Auto">
+        <ListBox ItemsSource="{Binding Friends}" SelectedItem="{Binding SelectedFriend,Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding FirstName}"/>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+        </ListBox>
+        <Grid Grid.Column="1" RowDefinitions="*,Auto" >
+            <Label Content="First Name" Margin="10 10 10 0"/>
+            <TextBox Grid.Row="1" Text="{Binding SelectedFriend.FirstName,
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10" />
+            <Label Grid.Row="2" Content="Last Name" Margin="10 10 10 0"/>
+            <TextBox Grid.Row="3" Text="{Binding SelectedFriend.LastName,
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10" />
+            <Label Grid.Row="4" Content="Email" Margin="10 10 10 0"/>
+            <TextBox Grid.Row="5" Text="{Binding SelectedFriend.Email,
+                Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="10 0 10 10" />
+        </Grid>
+    </Grid>
 
 </Window>
