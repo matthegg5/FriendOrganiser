@@ -1,8 +1,6 @@
 ﻿#nullable disable
 using FriendOrganiser.Domain.Common;
 using FriendOrganiser.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FriendOrganiser.Infrastructure.Persistence

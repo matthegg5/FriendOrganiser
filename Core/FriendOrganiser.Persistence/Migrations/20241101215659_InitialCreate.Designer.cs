@@ -2,7 +2,6 @@
 using FriendOrganiser.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -11,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FriendOrganiser.Persistence.Migrations
 {
     [DbContext(typeof(FriendOrganiserDbContext))]
-    [Migration("20241028095649_InitialCreate")]
+    [Migration("20241101215659_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,9 +19,7 @@ namespace FriendOrganiser.Persistence.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.10")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("FriendOrganiser.Domain.Entities.Friend", b =>
                 {
@@ -30,19 +27,17 @@ namespace FriendOrganiser.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -52,9 +47,9 @@ namespace FriendOrganiser.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "thomas@hubert.com",
-                            FirstName = "Thomas",
-                            LastName = "Hubert"
+                            Email = "apple@banana.com",
+                            FirstName = "Apple",
+                            LastName = "banana"
                         },
                         new
                         {
