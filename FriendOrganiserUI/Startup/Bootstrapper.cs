@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using FriendOrganiserUI.Data;
-using FriendOrganiserUI.ViewModel;
+using FriendOrganiserUI.Services;
+using FriendOrganiserUI.ViewModels;
 
 namespace FriendOrganiserUI.Startup
 {
@@ -12,6 +12,9 @@ namespace FriendOrganiserUI.Startup
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<FriendDataService>().As<IFriendDataService>();
+            builder.RegisterType<LookupDataService>().As<ILookupDataService>();
+            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
+            builder.RegisterType<FriendDetailViewModel>().As<IFriendDetailViewModel>();
 
             return builder.Build();
         }
