@@ -24,9 +24,18 @@ namespace FriendOrganiser.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IList<FriendViewModel>>> GetAllFriends(CancellationToken cancellationToken)
         {
-            var queryResponse = await _mediator.Send(new GetAllFriendsQuery(), cancellationToken: cancellationToken);
+            var queryResponse = await _mediator.Send(new GetAllFriends(), cancellationToken: cancellationToken);
             return Ok(queryResponse);
         }
+
+        [HttpGet("{friendId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<FriendViewModel>> GetFriendById([FromRoute] int friendId, CancellationToken cancellationToken)
+        {
+            var queryResponse = await _mediator.Send(new GetFriendById(friendId) , cancellationToken: cancellationToken);
+            return Ok(queryResponse);
+        }
+
 
     }
 }
