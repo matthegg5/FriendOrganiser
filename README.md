@@ -7,7 +7,7 @@ Autofac Dependency Injection container\
 Prism EventAggregator (Pub-Sub Events between View Models)\
 Model-View-ViewModel (MVVM)\
 TPL Async\
-WebAPI client\
+WebAPI client
 
 *Buzzwords - API*\
 .NET 8.0 C#\
@@ -15,8 +15,9 @@ WebAPI Service\
 TPL Async\
 MediatR\
 Automapper\
+Fluent Validation\
 Command-Query-Responsibility-Segregation\
-Entity Framework Core\
+Entity Framework Core
 
 
 
