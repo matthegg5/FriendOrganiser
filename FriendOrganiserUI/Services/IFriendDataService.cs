@@ -6,5 +6,6 @@ namespace FriendOrganiserUI.Services
     {
         Task<IEnumerable<Friend>> GetAll();
         Task<Friend> GetFriendById(int friendId);
+        Task Save(Friend friend);
     }
 }

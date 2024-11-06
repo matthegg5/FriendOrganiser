@@ -1,6 +1,7 @@
 ﻿using FriendOrganiser.Model;
 using FriendOrganiserUI.Events;
 using FriendOrganiserUI.Services;
+using System.Windows.Input;
 
 namespace FriendOrganiserUI.ViewModels
 {
@@ -28,6 +29,21 @@ namespace FriendOrganiserUI.ViewModels
 
             // subscribe to the OpenFriendDetailViewEvent and run OnOpenFriendDetailView
             _eventAggregator.GetEvent<OpenFriendDetailViewEvent>().Subscribe(OnOpenFriendDetailView);
+
+            // initialises a command object to see if the Friend can be saved first (for validation etc.) when the command is executed and then
+            // calls the FriendDataService to save the Friend object to the database via the API.
+            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+        }
+
+        private bool OnSaveCanExecute()
+        {
+            // Validate Friend here
+            return true;
+        }
+
+        private async void OnSaveExecute()
+        {
+            await _friendDataService.Save(Friend);
         }
 
         private async void OnOpenFriendDetailView(int friendId)
@@ -39,5 +55,7 @@ namespace FriendOrganiserUI.ViewModels
         {
             Friend = await _friendDataService.GetFriendById(friendId);
         }
+
+        public ICommand SaveCommand { get; }
     }
 }
