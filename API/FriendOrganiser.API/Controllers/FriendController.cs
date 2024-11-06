@@ -1,6 +1,7 @@
 #nullable disable
 
 using FriendOrganiser.Application.Features.Friend;
+using FriendOrganiser.Application.Features.Friend.Commands;
 using FriendOrganiser.Application.ViewModels;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,11 @@ namespace FriendOrganiser.API.Controllers
             return Ok(queryResponse);
         }
 
-
+        [HttpPost]
+        public async Task<IActionResult> UpdateFriend([FromBody] UpdateFriend.Command request, CancellationToken cancellationToken)
+        {
+            var response = await _mediator.Send(request, cancellationToken: cancellationToken);
+            return Ok(response);
+        }
     }
 }

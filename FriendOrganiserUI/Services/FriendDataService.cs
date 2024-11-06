@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -57,6 +58,35 @@ namespace FriendOrganiserUI.Services
             {
                 MessageBox.Show("Unexpected error: " + ex.Message);
                 return new Friend();
+            }
+        }
+
+        public async Task Save(Friend friend)
+        {
+            try
+            {
+                var jsonFriend = JsonConvert.SerializeObject(friend);
+
+                // build POST request to API
+                var request = new HttpRequestMessage(HttpMethod.Post, $"http://localhost:7020/api/friend/");
+                request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                request.Content = new StringContent(jsonFriend, Encoding.UTF8);
+                request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+                // send request to API and gather response
+                var response = await client.SendAsync(request);
+
+                // throw an exception if request not successful.
+                response.EnsureSuccessStatusCode();
+
+            }
+            catch (HttpRequestException ex)
+            {
+                MessageBox.Show("Error fetching data: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error: " + ex.Message);
             }
         }
     }
