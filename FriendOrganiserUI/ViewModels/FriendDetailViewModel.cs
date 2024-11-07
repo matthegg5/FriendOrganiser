@@ -1,6 +1,7 @@
 ﻿using FriendOrganiser.Model;
 using FriendOrganiserUI.Events;
 using FriendOrganiserUI.Services;
+using System.Security.Cryptography.Xml;
 using System.Windows.Input;
 
 namespace FriendOrganiserUI.ViewModels
@@ -44,6 +45,12 @@ namespace FriendOrganiserUI.ViewModels
         private async void OnSaveExecute()
         {
             await _friendDataService.Save(Friend);
+            _eventAggregator.GetEvent<AfterFriendSavedEvent>().Publish(
+                new AfterFriendSavedEventArgs
+                {
+                    Id = Friend.Id,
+                    DisplayMember = $"{Friend.FirstName} {Friend.LastName}"
+                });
         }
 
         private async void OnOpenFriendDetailView(int friendId)
