@@ -18,6 +18,15 @@ namespace FriendOrganiserUI
             var mainWindow = container.Resolve<MainWindow>();
             mainWindow.Show();
         }
+
+        private void Application_DispatcherUnhandledException(object sender, 
+            System.Windows.Threading.DispatcherUnhandledExceptionEventArgs exceptionEventArgs)
+        {
+            MessageBox.Show("Unexpected error, please contact your system administrator." 
+                + Environment.NewLine + exceptionEventArgs.Exception.Message, "Unexpected error");
+
+            exceptionEventArgs.Handled = true;
+        }
     }
 
 }
