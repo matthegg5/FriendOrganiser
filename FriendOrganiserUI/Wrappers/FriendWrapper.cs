@@ -36,6 +36,21 @@ namespace FriendOrganiserUI.Wrappers
                         AddError(propertyName, "First name cannot be null or empty");
                     }
                     break;
+
+                case nameof(LastName):
+                    if (string.IsNullOrWhiteSpace(LastName))
+                    {
+                        AddError(propertyName, "Last name cannot be null or empty");
+                    }
+                    break;
+
+                case nameof(Email):
+                    if (string.IsNullOrWhiteSpace(Email))
+                    {
+                        AddError(propertyName, "Email cannot be null or empty");
+                    }
+                    break;
+
             }
         }
 
