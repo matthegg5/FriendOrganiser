@@ -61,6 +61,7 @@ namespace FriendOrganiserUI.Wrappers
             { 
                 Model.LastName = value; 
                 OnPropertyChanged();
+                ValidateProperty(nameof(LastName));
             }
         }
 
@@ -71,6 +72,7 @@ namespace FriendOrganiserUI.Wrappers
             {
                 Model.Email = value;
                 OnPropertyChanged();
+                ValidateProperty(nameof(Email));
             }
         }
 
