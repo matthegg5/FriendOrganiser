@@ -1,6 +1,7 @@
 ﻿using FriendOrganiser.Model;
 using FriendOrganiserUI.Events;
 using FriendOrganiserUI.Services;
+using FriendOrganiserUI.Wrappers;
 using System.Security.Cryptography.Xml;
 using System.Windows.Input;
 
@@ -10,8 +11,9 @@ namespace FriendOrganiserUI.ViewModels
     {
         private IFriendDataService _friendDataService;
         private readonly IEventAggregator _eventAggregator;
+        private FriendWrapper _friend;
 
-        public Friend Friend
+        public FriendWrapper Friend
         {
             get { return _friend; }
             private set
@@ -20,8 +22,6 @@ namespace FriendOrganiserUI.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private Friend _friend;
 
         public FriendDetailViewModel(IFriendDataService friendDataService, IEventAggregator eventAggregator)
         {
@@ -44,7 +44,7 @@ namespace FriendOrganiserUI.ViewModels
 
         private async void OnSaveExecute()
         {
-            await _friendDataService.Save(Friend);
+            await _friendDataService.Save(Friend.Model);
             _eventAggregator.GetEvent<AfterFriendSavedEvent>().Publish(
                 new AfterFriendSavedEventArgs
                 {
@@ -60,7 +60,9 @@ namespace FriendOrganiserUI.ViewModels
 
         public async Task LoadAsync(int friendId)
         {
-            Friend = await _friendDataService.GetFriendById(friendId);
+            var friend = await _friendDataService.GetFriendById(friendId);
+
+            Friend = new FriendWrapper(friend);
         }
 
         public ICommand SaveCommand { get; }
