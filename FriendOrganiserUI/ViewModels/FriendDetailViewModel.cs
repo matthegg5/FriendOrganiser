@@ -1,8 +1,6 @@
-﻿using FriendOrganiser.Model;
-using FriendOrganiserUI.Events;
+﻿using FriendOrganiserUI.Events;
 using FriendOrganiserUI.Services;
 using FriendOrganiserUI.Wrappers;
-using System.Security.Cryptography.Xml;
 using System.Windows.Input;
 
 namespace FriendOrganiserUI.ViewModels

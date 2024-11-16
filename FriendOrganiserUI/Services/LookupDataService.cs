@@ -8,12 +8,13 @@ namespace FriendOrganiserUI.Services
     public class LookupDataService : ILookupDataService
     {
         private static readonly HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+        private string ApiUrl = "http://localhost:7020/api/";
 
         public async Task<IEnumerable<LookupItem>> GetFriendLookupAsync()
         {
             try
             {
-                var response = await client.GetAsync("http://localhost:7020/api/lookup/friend-lookup");
+                var response = await client.GetAsync($"{ApiUrl}lookup/friend-lookup");
                 response.EnsureSuccessStatusCode();
 
                 var jsonString = await response.Content.ReadAsStringAsync();

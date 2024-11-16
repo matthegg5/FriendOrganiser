@@ -26,6 +26,8 @@ namespace FriendOrganiserUI
                 + Environment.NewLine + exceptionEventArgs.Exception.Message, "Unexpected error");
 
             exceptionEventArgs.Handled = true;
+
+            this.Shutdown();
         }
     }
 
