@@ -1,6 +1,9 @@
 ﻿using Autofac;
 using FriendOrganiserUI.Services;
 using FriendOrganiserUI.ViewModels;
+using Microsoft.Extensions.Configuration;
+using System.Configuration;
+using System.IO;
 
 namespace FriendOrganiserUI.Startup
 {
@@ -20,6 +23,16 @@ namespace FriendOrganiserUI.Startup
             builder.RegisterType<FriendDetailViewModel>().As<IFriendDetailViewModel>();
 
             return builder.Build();
+        }
+
+        public IConfiguration BuildConfiguration()
+        {
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory()) // Set the base path to the current directory
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true); // Load appsettings.json
+
+            return builder.Build();
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace FriendOrganiserUI.Services
     public class LookupDataService : ILookupDataService
     {
         private static readonly HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
-        private string ApiUrl = "http://localhost:7020/api/";
+        private string ApiUrl = App.AppSettings.ApiUrl;
 
         public async Task<IEnumerable<LookupItem>> GetFriendLookupAsync()
         {
