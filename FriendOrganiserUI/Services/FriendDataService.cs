@@ -12,12 +12,13 @@ namespace FriendOrganiserUI.Services
     public class FriendDataService : IFriendDataService
     {
         private static readonly HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+        private string ApiUrl = App.AppSettings.ApiUrl;
 
         public async Task<IEnumerable<Friend>> GetAll()
         {
             try
             {
-                var response = await client.GetAsync("http://localhost:7020/api/friend/all");
+                var response = await client.GetAsync($"{ApiUrl}friend/all");
                 response.EnsureSuccessStatusCode();
 
                 var jsonString = await response.Content.ReadAsStringAsync();
@@ -41,7 +42,7 @@ namespace FriendOrganiserUI.Services
         {
             try
             {
-                var response = await client.GetAsync($"http://localhost:7020/api/friend/{friendId}");
+                var response = await client.GetAsync($"{ApiUrl}friend/{friendId}");
                 response.EnsureSuccessStatusCode();
 
                 var jsonString = await response.Content.ReadAsStringAsync();
@@ -68,7 +69,7 @@ namespace FriendOrganiserUI.Services
                 var jsonFriend = JsonConvert.SerializeObject(friend);
 
                 // build POST request to API
-                var request = new HttpRequestMessage(HttpMethod.Post, $"http://localhost:7020/api/friend/");
+                var request = new HttpRequestMessage(HttpMethod.Post, $"{ApiUrl}friend/");
                 request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 request.Content = new StringContent(jsonFriend, Encoding.UTF8);
                 request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
