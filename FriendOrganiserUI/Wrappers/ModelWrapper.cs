@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace FriendOrganiserUI.Wrappers
 {
@@ -21,13 +22,34 @@ namespace FriendOrganiserUI.Wrappers
             // using Reflection to assign a value to a property of our Model
             typeof(T).GetProperty(propertyName).SetValue(Model, value);
             OnPropertyChanged();
-            ValidatePropertyInternal(propertyName);
+            ValidatePropertyInternal(propertyName, value);
         }
 
-        private void ValidatePropertyInternal(string propertyName)
+        private void ValidatePropertyInternal(string propertyName, object currentValue)
         {
             ClearErrors(propertyName);
 
+            ValidateDataAnnotations(propertyName, currentValue);
+
+            ValidateCustomErrors(propertyName);
+
+        }
+
+        private void ValidateDataAnnotations(string propertyName, object currentValue)
+        {
+            var results = new List<ValidationResult>();
+            var validationContext = new ValidationContext(Model) { MemberName = propertyName };
+
+            Validator.TryValidateProperty(currentValue, validationContext, results);
+
+            foreach (var result in results)
+            {
+                AddError(propertyName, result.ErrorMessage);
+            }
+        }
+
+        private void ValidateCustomErrors(string propertyName)
+        {
             var errors = ValidateProperty(propertyName);
 
             if (errors != null)
@@ -37,7 +59,6 @@ namespace FriendOrganiserUI.Wrappers
                     AddError(propertyName, error);
                 }
             }
-
         }
 
         protected virtual IEnumerable<string> ValidateProperty(string propertyName)
