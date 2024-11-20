@@ -36,8 +36,12 @@ namespace FriendOrganiserUI.ViewModels
 
         private bool OnSaveCanExecute()
         {
-            // Validate Friend here
-            return true;
+            if (Friend != null && Friend.HasErrors == false)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private async void OnSaveExecute()
@@ -61,6 +65,18 @@ namespace FriendOrganiserUI.ViewModels
             var friend = await _friendDataService.GetFriendById(friendId);
 
             Friend = new FriendWrapper(friend);
+
+            // install event handler for PropertyChanged event
+
+            Friend.PropertyChanged += (sender, eventargs) =>
+            {
+                if (eventargs.PropertyName == nameof(Friend.HasErrors))
+                {
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            };
+
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
         public ICommand SaveCommand { get; }

@@ -29,6 +29,7 @@ namespace FriendOrganiserUI.Wrappers
         {
             // "this" being the sending object, the object instantiated with the type defined in this class
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            base.OnPropertyChanged(nameof(HasErrors));
         }
 
         protected void AddError(string propertyName, string error)
