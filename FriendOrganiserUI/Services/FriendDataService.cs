@@ -69,7 +69,7 @@ namespace FriendOrganiserUI.Services
                 var jsonFriend = JsonConvert.SerializeObject(friend);
 
                 // build POST request to API
-                var request = new HttpRequestMessage(HttpMethod.Post, $"{ApiUrl}friend/");
+                var request = new HttpRequestMessage(HttpMethod.Put, $"{ApiUrl}friend/");
                 request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                 request.Content = new StringContent(jsonFriend, Encoding.UTF8);
                 request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
