@@ -37,7 +37,7 @@ namespace FriendOrganiser.API.Controllers
             return Ok(queryResponse);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> UpdateFriend([FromBody] UpdateFriend.Command request, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(request, cancellationToken: cancellationToken);
