@@ -7,8 +7,6 @@ namespace FriendOrganiserUI.Wrappers
         public FriendWrapper(Friend model) : base(model)
         {
         }
-
-        public Friend Model { get; set; }
         public int Id { get { return Model.Id; } }
         public string FirstName
         {
@@ -39,7 +37,6 @@ namespace FriendOrganiserUI.Wrappers
         
         protected override IEnumerable<string> ValidateProperty(string propertyName)
         {
-            ClearErrors(propertyName);
             switch (propertyName)
             {
                 case nameof(FirstName):
