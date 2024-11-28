@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FriendOrganiser-API-Python", "FriendOrganiser-API-Python\FriendOrganiser-API-Python.pyproj", "{7D515979-A052-4702-8C3F-67974FB1560C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,8 @@ Global
 		{A52D9423-2788-4536-B0BB-DD86ED5447E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A52D9423-2788-4536-B0BB-DD86ED5447E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A52D9423-2788-4536-B0BB-DD86ED5447E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D515979-A052-4702-8C3F-67974FB1560C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D515979-A052-4702-8C3F-67974FB1560C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
