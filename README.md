@@ -1,4 +1,4 @@
-This is a WPF Windows Desktop application that initially followed an online tutorial for the "Friend Organiser" use case, but I extended the tutorial to convert the WPF Desktop App to use an API service for its data persistence instead of local ORM direct to database.
+This is a WPF Windows Desktop application that initially followed an online tutorial for the "Friend Organiser" use case, but I extended the tutorial to convert the WPF Desktop App to use an API service for its data persistence instead of local ORM direct to database. I've also recreated the server endpoint in Python using Flask, and Ruby On Rails using Active Record, for no reason whatsoever.
 
 *Buzzwords - UI*\
 WPF\
@@ -21,7 +21,7 @@ Entity Framework Core
 
 
 
-Frequently used commands\
+Frequently used commands (for the .NET backend)\
 
 Create a data migration
 
@@ -30,3 +30,15 @@ Create a data migration
 Run migrations against the database
 
 ```dotnet ef database update --project ./Core/FriendOrganiser.Persistence/FriendOrganiser.Persistence.csproj --startup-project ./API/FriendOrganiser.API/FriendOrganiser.API.csproj```
+
+(For the Python backend)
+
+Set up a MariaDB instance and use the "create-and-seed-database.sql" file to initialise the database. The connection details can be maintained in the ExecuteDatabaseStatement.py file
+
+(For the Ruby backend)
+Version required: 3.3.6
+
+rails db:create
+rails db:migrate
+rails db:seed
+rails server --binding=0.0.0.0 --port=7020
