@@ -35,10 +35,10 @@ Run migrations against the database
 
 Set up a MariaDB instance and use the "create-and-seed-database.sql" file to initialise the database. The connection details can be maintained in the ExecuteDatabaseStatement.py file
 
-(For the Ruby backend)
+(For the Ruby backend) \
 Version required: 3.3.6
 
-rails db:create
-rails db:migrate
-rails db:seed
+rails db:create \
+rails db:migrate \
+rails db:seed \
 rails server --binding=0.0.0.0 --port=7020
