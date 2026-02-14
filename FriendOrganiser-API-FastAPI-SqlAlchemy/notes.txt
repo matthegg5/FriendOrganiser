@@ -1,0 +1,3 @@
+db_user = "FriendOrganiser"
+db_name = "FriendOrganiser"
+server and port = "localhost:5678"
