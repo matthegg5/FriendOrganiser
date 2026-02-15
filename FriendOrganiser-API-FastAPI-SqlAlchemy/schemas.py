@@ -1,14 +1,18 @@
 # schemas.py
 from pydantic import BaseModel
 
-class UserBase(BaseModel):
-    name: str
+class FriendBase(BaseModel):
+    FirstName: str
+    LastName: str
+    EmailAddress: str
 
-class UserCreate(UserBase):
+class FriendCreate(FriendBase):
     pass
 
-class User(UserBase):
-    id: int
+class Friend(FriendBase):
+    FirstName: str
+    LastName: str
+    EmailAddress: str
 
     class Config:
         orm_mode = True
