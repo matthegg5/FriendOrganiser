@@ -2,13 +2,19 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from models.friend_model import Friend
 
-# Create a friend
-async def create_friend(db: AsyncSession, name: str):
-    new_user = Friend(name=name)
-    db.add(new_user)
+async def create_friend(db: AsyncSession, first_name: str, last_name: str, email: str):
+    new_friend = Friend(
+        FirstName=first_name,
+        LastName=last_name,
+        EmailAddress=email
+    )
+    
+    db.add(new_friend)
+    
     await db.commit()
-    await db.refresh(new_user)
-    return new_user
+    await db.refresh(new_friend)
+    
+    return new_friend
 
 # Get friends
 async def get_friends(db: AsyncSession, skip: int = 0, limit: int = 10):

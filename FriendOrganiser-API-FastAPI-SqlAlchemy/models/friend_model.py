@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from database import Base  # Make sure 'Base' is correctly imported
+from database import Base
 
 class Friend(Base):
     __tablename__ = "Friend"
