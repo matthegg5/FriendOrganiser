@@ -15,11 +15,11 @@ class FriendCreate(FriendBase):
 
 
 class FriendUpdate(FriendBase):
-    Id: int
+    Id: str
 
 
 class Friend(FriendBase):
-    Id: int
+    Id: str
 
     class Config:
         from_attributes = True
