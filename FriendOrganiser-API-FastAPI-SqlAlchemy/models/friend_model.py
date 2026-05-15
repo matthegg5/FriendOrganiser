@@ -1,10 +1,12 @@
 from sqlalchemy import Column, Integer, String
 from database import Base
+from uuid6 import uuid7
 
 class Friend(Base):
-    __tablename__ = "Friend"
+    __tablename__ = "friends"
 
-    id = Column(Integer, primary_key=True, index=True)
-    FirstName = Column(String, index=True)
-    LastName = Column(String, index=True)
-    EmailAddress = Column(String, index=True)
+    Id = Column(String, primary_key=True, default=lambda: str(uuid7()))
+
+    FirstName = Column(String)
+    LastName = Column(String)
+    EmailAddress = Column(String, unique=True)

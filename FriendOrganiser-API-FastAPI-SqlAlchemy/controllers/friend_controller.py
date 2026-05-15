@@ -1,11 +1,11 @@
 # controllers/user_controller.py
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from service_classes.friend_service import create_friend, get_friend_by_id, get_friends
-from schemas import FriendCreate, Friend
+from service_classes.friend_service import create_friend, get_friend_by_id, get_friends, update_friend
+from schemas import FriendCreate, Friend, FriendUpdate
 from database import AsyncSessionLocal, get_db
 
-router = APIRouter()  # This is where we define the controller routes
+router = APIRouter()
 
 # Create a friend (Controller)
 @router.post("/friend/", response_model=Friend)
@@ -20,7 +20,20 @@ async def get_friends_controller(skip: int = 0, limit: int = 10, db: AsyncSessio
 # Get a friend by ID (Controller)
 @router.get("/friend/{friend_id}", response_model=Friend)
 async def get_friend_controller(friend_id: int, db: AsyncSession = Depends(get_db)):
-    user = await get_friend_by_id(db=db, friend_id=friend_id)
-    if user is None:
+    friend = await get_friend_by_id(db=db, friend_id=friend_id)
+    if friend is None:
         raise HTTPException(status_code=404, detail="Friend not found")
-    return user
+    return friend
+
+@router.put("/api/friend/", response_model=Friend)
+async def update_friend_controller(
+    friend: FriendUpdate,
+    db: AsyncSession = Depends(get_db)
+):
+
+    updated_friend = await update_friend(db, friend)
+
+    if updated_friend is None:
+        raise HTTPException(status_code=404, detail="Friend not found")
+
+    return updated_friend

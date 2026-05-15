@@ -1,18 +1,25 @@
 # schemas.py
 from pydantic import BaseModel
+from typing import Optional
+
 
 class FriendBase(BaseModel):
+    Id: str
     FirstName: str
     LastName: str
     EmailAddress: str
+
 
 class FriendCreate(FriendBase):
     pass
 
+
+class FriendUpdate(FriendBase):
+    Id: int
+
+
 class Friend(FriendBase):
-    FirstName: str
-    LastName: str
-    EmailAddress: str
+    Id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
